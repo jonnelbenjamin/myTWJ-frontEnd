@@ -10,15 +10,15 @@ class Journal extends React.Component {
     }
 
     handleChange = (e) => {
-        console.log('hit')
         this.setState({
             currentEntry: e.target.value
         })
     }
 
     handleSubmit = () => {
-        console.log('hit')
-        debugger
+        this.setState({
+
+        })
     } 
 
     render(){
