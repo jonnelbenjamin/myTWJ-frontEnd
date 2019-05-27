@@ -15,21 +15,31 @@ class Journal extends React.Component {
         })
     }
 
-    handleSubmit = () => {
-        this.setState({
-
-        })
+    handleSubmit = (entry) => {
+        let userId = 1
+        fetch('http://localhost:3000/entries', {
+            method:"POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+                description: entry,
+                user_id: userId,
+                date_and_time: 'today is the day'
+            })
+        }
+        )
     } 
 
     render(){
       return (
         <div>
        
-        <Form reply>
+        <Form>
           <Form.TextArea 
           onChange={this.handleChange}
           />
-          <Button content='Submit Entry' icon='edit' onClick={this.handleSubmit}/>
+          <Button content='Submit Entry' icon='edit' onClick={() => this.handleSubmit(this.state.currentEntry)}/>
         </Form>
        </div>
       )

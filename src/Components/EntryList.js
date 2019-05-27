@@ -8,13 +8,21 @@ class EntryList extends React.Component {
     }
 }
 
+componentDidMount(){
+    fetch('http://localhost:3000/entries')
+    .then(res => res.json())
+    .then(entryList => this.setState({
+        entryList
+    }))
+}
+
     render(){
       return (
         <div>
             <ul>
         {this.state.entryList.map(entry => 
             <li>
-                entry
+                {entry.description}
             </li>
             )}
             </ul>
