@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Table } from 'semantic-ui-react'
+import { Icon, Table, Search } from 'semantic-ui-react'
 import Calendar from 'react-calendar';
 
 class EntryList extends React.Component {
@@ -25,8 +25,8 @@ onCalendarChange = date => this.setState({ date })
     render(){
       return (
         <div>
-          
-      <Table>
+       
+      <Table id="journalEntries">
       <Table.Header>
           <Table.Row>
             <Table.HeaderCell colSpan='3'>Entries List</Table.HeaderCell>
@@ -44,6 +44,9 @@ onCalendarChange = date => this.setState({ date })
           onChange={this.onCalendarChange}
           value={this.state.date}
         />
+        <div id='search'>
+        <Search/>  
+        </div> 
        </div>
       )
     }

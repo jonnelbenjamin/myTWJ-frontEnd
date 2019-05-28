@@ -47,3 +47,16 @@ body {
   top: 80px;
   right: 40px;
 }
+
+#journalEntries {
+  position: absolute;
+  left: 110px;
+  top: 220px;
+  width: 60%;
+}
+
+#search{
+  position: fixed;
+  top: 100px;
+  left:320px;
+}
