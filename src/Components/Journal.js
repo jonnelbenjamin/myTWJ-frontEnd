@@ -4,8 +4,12 @@ import {Form, Button} from 'semantic-ui-react'
 class Journal extends React.Component {
     constructor() {
         super()
+        let today = new Date(),
+            date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
+
         this.state = {
-            currentEntry: ""
+            currentEntry: "",
+            date: date
         }
     }
 
@@ -16,6 +20,7 @@ class Journal extends React.Component {
     }
 
     handleSubmit = (entry) => {
+        let dateAndTime = new Date()
         let userId = 1
         fetch('http://localhost:3000/entries', {
             method:"POST",
@@ -25,7 +30,7 @@ class Journal extends React.Component {
             body: JSON.stringify({
                 description: entry,
                 user_id: userId,
-                date_and_time: 'today is the day'
+                date_and_time: dateAndTime
             })
         }
         )
@@ -34,7 +39,7 @@ class Journal extends React.Component {
     render(){
       return (
         <div>
-       
+       <p>{this.state.date}</p>
         <Form>
           <Form.TextArea 
           onChange={this.handleChange}

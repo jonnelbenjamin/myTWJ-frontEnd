@@ -28,3 +28,22 @@
  top: 0px;
  width: 100%;
 }
+
+body {
+  background-image: url('https://images.pexels.com/photos/606539/pexels-photo-606539.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+#settingsSegment {
+  height: 600px;
+  width: 800px;
+  opacity: 0.8;
+}
+
+.react-calendar {
+  position: absolute;
+  top: 80px;
+  right: 40px;
+}

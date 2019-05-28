@@ -1,10 +1,11 @@
 import React from 'react'
+import { Segment } from 'semantic-ui-react'
 
 class Settings extends React.Component {
 
     render(){
       return (
-       <h1>"I'm the settings page!"</h1>
+       <Segment id="settingsSegment" raised><h1>"I'm the settings page!"</h1></Segment>
       )
     }
   }

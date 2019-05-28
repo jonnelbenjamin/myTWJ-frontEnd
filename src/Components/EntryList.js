@@ -1,10 +1,13 @@
 import React from 'react'
+import { Icon, Table } from 'semantic-ui-react'
+import Calendar from 'react-calendar';
 
 class EntryList extends React.Component {
     constructor(){
     super()
     this.state = {
-        entryList: []
+        entryList: [],
+        date: new Date()
     }
 }
 
@@ -16,16 +19,31 @@ componentDidMount(){
     }))
 }
 
+onCalendarChange = date => this.setState({ date })
+
+
     render(){
       return (
         <div>
-            <ul>
+          
+      <Table>
+      <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell colSpan='3'>Entries List</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+          <Table.Body>
         {this.state.entryList.map(entry => 
-            <li>
-                {entry.description}
-            </li>
+            <Table.Row>
+            <Table.Cell>{entry.description}</Table.Cell>
+            </Table.Row>
             )}
-            </ul>
+            </Table.Body>
+        </Table>
+        <Calendar
+          onChange={this.onCalendarChange}
+          value={this.state.date}
+        />
        </div>
       )
     }
