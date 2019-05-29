@@ -21,40 +21,41 @@ componentDidMount(){
         entryList
     }))
 }
-  formatDateVariable = (dateVariable) => {
-  let day = dateVariable.getDay()
-  let month = dateVariable.getMonth()
-  let year = dateVariable.getFullYear()
-  debugger
-}
+ 
 
 onCalendarChange = (date) => {
   let newDate = this.formatDateVariable(date)
-  this.setState({ date:newDate })}
+  this.setState({ date:newDate, search: "" })}
 
 searchChange = (e) => {
     this.setState({
-    search: e.target.value
+    search: e.target.value,
+    date: ""
 })
 }
 
 formatDateVariable = (dateVariable) => {
   let day = dateVariable.getDate()
-  let month = dateVariable.getMonth()
+  let month = dateVariable.getMonth() + 1
   let year = dateVariable.getFullYear()
   // 2019-05-29
   
-  if(month >= 10){
-    let parsedString = `${year}-${month}-${day}`
-
+  if(month >= 10 && day < 10){
+    let parsedString = `${month}-0${day}-${year}`
     return parsedString
-    
   }
-  else if(month < 10){
-  let parsedString = `${year}-0${month}-${day}`
-    return parsedString
-    
+  else if(month < 10 && day < 10){
+  let parsedString = `${month}-0${day}-${year}`
+    return parsedString 
 }
+  else if(day >= 10 && month <10 ){
+    let parsedString = `${month}-${day}-${year}`
+    return parsedString
+  }
+  else {
+    let parsedString = `${month}-${day}-${year}`
+    return parsedString
+  }
   
 }
 
@@ -70,14 +71,18 @@ formatDateVariable = (dateVariable) => {
           </Table.Row>
         </Table.Header>
           <Table.Body>
-            {this.state.date ? this.state.entryList.map(entry => entry.date_and_time.includes(this.state.date) 
+          {/* entry.date_and_time.includes(this.state.date) */}
+            {this.state.date ? this.state.entryList.map(entry => entry.date_and_time.startsWith(this.state.date) 
             ? <Table.Row><Table.Cell>{entry.description}</Table.Cell>
-            </Table.Row> : console.log('not hitting the correct dates')): null}
+            <Table.Cell>{entry.date_and_time}</Table.Cell>
+            </Table.Row> : null): null}
         {this.state.search ? this.state.entryList.map(entry => entry.description.includes(this.state.search) ?  <Table.Row>
             <Table.Cell>{entry.description}</Table.Cell>
+            <Table.Cell>{entry.date_and_time}</Table.Cell>
             </Table.Row> : null) : this.state.entryList.map(entry => 
             <Table.Row>
             <Table.Cell>{entry.description}</Table.Cell>
+            <Table.Cell>{entry.date_and_time}</Table.Cell>
             </Table.Row>
             )}
             </Table.Body>
@@ -88,7 +93,6 @@ formatDateVariable = (dateVariable) => {
         />
         <div id='search'>
           <Search onSearchChange={this.searchChange}
-          
           ></Search>
         </div> 
        </div>

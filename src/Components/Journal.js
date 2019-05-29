@@ -21,7 +21,8 @@ class Journal extends React.Component {
     }
 
     handleSubmit = (entry) => {
-        let dateAndTime = new Date()
+        let today = new Date(),
+        date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear()
         let userId = 1
         fetch('http://localhost:3000/entries', {
             method:"POST",
@@ -31,7 +32,7 @@ class Journal extends React.Component {
             body: JSON.stringify({
                 description: entry,
                 user_id: userId,
-                date_and_time: dateAndTime
+                date_and_time: date
             })
         }
         )
