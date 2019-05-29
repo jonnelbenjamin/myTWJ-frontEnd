@@ -9,8 +9,8 @@ class EntryList extends React.Component {
     super()
     this.state = {
         entryList: [],
-        date: new Date(),
-        search: ''
+        date: "",
+        search: ""
     }
 }
 
@@ -21,16 +21,44 @@ componentDidMount(){
         entryList
     }))
 }
+  formatDateVariable = (dateVariable) => {
+  let day = dateVariable.getDay()
+  let month = dateVariable.getMonth()
+  let year = dateVariable.getFullYear()
+  debugger
+}
 
-onCalendarChange = date => this.setState({ date })
+onCalendarChange = (date) => {
+  let newDate = this.formatDateVariable(date)
+  this.setState({ date:newDate })}
 
 searchChange = (e) => {
-    let event = e
-    event.persist()
     this.setState({
-    search: event
+    search: e.target.value
 })
 }
+
+formatDateVariable = (dateVariable) => {
+  let day = dateVariable.getDate()
+  let month = dateVariable.getMonth()
+  let year = dateVariable.getFullYear()
+  // 2019-05-29
+  
+  if(month >= 10){
+    let parsedString = `${year}-${month}-${day}`
+
+    return parsedString
+    
+  }
+  else if(month < 10){
+  let parsedString = `${year}-0${month}-${day}`
+    return parsedString
+    
+}
+  
+}
+
+
     render(){
       return (
         <div>
@@ -42,7 +70,12 @@ searchChange = (e) => {
           </Table.Row>
         </Table.Header>
           <Table.Body>
-        {this.state.entryList.map(entry => 
+            {this.state.date ? this.state.entryList.map(entry => entry.date_and_time.includes(this.state.date) 
+            ? <Table.Row><Table.Cell>{entry.description}</Table.Cell>
+            </Table.Row> : console.log('not hitting the correct dates')): null}
+        {this.state.search ? this.state.entryList.map(entry => entry.description.includes(this.state.search) ?  <Table.Row>
+            <Table.Cell>{entry.description}</Table.Cell>
+            </Table.Row> : null) : this.state.entryList.map(entry => 
             <Table.Row>
             <Table.Cell>{entry.description}</Table.Cell>
             </Table.Row>
@@ -51,14 +84,12 @@ searchChange = (e) => {
         </Table>
         <Calendar
           onChange={this.onCalendarChange}
-          value={this.state.date}
+          value={new Date()}
         />
         <div id='search'>
-        {/* <ReactSearchBox
-        inputBoxWidth='110px'
-        onChange={(e) => this.searchChange(e)}
-        /> */}
-        <input onChange={(e) => this.searchChange(e)}></input>
+          <Search onSearchChange={this.searchChange}
+          
+          ></Search>
         </div> 
        </div>
       )
