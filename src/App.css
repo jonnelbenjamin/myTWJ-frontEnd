@@ -56,7 +56,9 @@ body {
 }
 
 #search{
-  position: fixed;
+  position: fixed; 
   top: 100px;
   left:320px;
+}
+#journal {
 }

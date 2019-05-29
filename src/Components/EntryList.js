@@ -1,13 +1,16 @@
 import React from 'react'
 import { Icon, Table, Search } from 'semantic-ui-react'
 import Calendar from 'react-calendar';
+import ReactSearchBox from 'react-search-box'
+
 
 class EntryList extends React.Component {
     constructor(){
     super()
     this.state = {
         entryList: [],
-        date: new Date()
+        date: new Date(),
+        search: ''
     }
 }
 
@@ -21,7 +24,13 @@ componentDidMount(){
 
 onCalendarChange = date => this.setState({ date })
 
-
+searchChange = (e) => {
+    let event = e
+    event.persist()
+    this.setState({
+    search: event
+})
+}
     render(){
       return (
         <div>
@@ -45,7 +54,11 @@ onCalendarChange = date => this.setState({ date })
           value={this.state.date}
         />
         <div id='search'>
-        <Search/>  
+        {/* <ReactSearchBox
+        inputBoxWidth='110px'
+        onChange={(e) => this.searchChange(e)}
+        /> */}
+        <input onChange={(e) => this.searchChange(e)}></input>
         </div> 
        </div>
       )

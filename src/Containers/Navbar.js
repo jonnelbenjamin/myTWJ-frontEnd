@@ -1,10 +1,7 @@
 import React from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
 import {Route, Switch, Link, withRouter} from 'react-router-dom'
-import EntryList from '../Components/EntryList';
-import Journal from '../Components/Journal'
-import Settings from '../Components/Settings'
-import Login from '../Components/Login'
+
 
 
 class Navbar extends React.Component {

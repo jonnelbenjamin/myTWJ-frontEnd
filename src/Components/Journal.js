@@ -1,5 +1,6 @@
 import React from 'react'
 import {Form, Button} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 class Journal extends React.Component {
     constructor() {
@@ -40,11 +41,11 @@ class Journal extends React.Component {
       return (
         <div>
        <p>{this.state.date}</p>
-        <Form>
+        <Form id='journal'>
           <Form.TextArea 
           onChange={this.handleChange}
           />
-          <Button content='Submit Entry' icon='edit' onClick={() => this.handleSubmit(this.state.currentEntry)}/>
+          <Link to="/entrylist"><Button content='Submit Entry' icon='edit' onClick={() => this.handleSubmit(this.state.currentEntry)}/></Link>
         </Form>
        </div>
       )
