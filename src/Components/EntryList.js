@@ -60,13 +60,13 @@ class EntryList extends React.Component {
 
   }
 
+  // this is a test
+
+
   handleDelete = (e) => {
     fetch(`http://localhost:3000/entries/${e.target.id}`, {
       method: "DELETE"
-    }
-
-    )
-  }
+    } )}
 
 
   render() {
