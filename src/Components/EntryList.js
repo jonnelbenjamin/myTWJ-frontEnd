@@ -61,6 +61,7 @@ class EntryList extends React.Component {
   }
 
   // this is a test
+  // another
 
 
   handleDelete = (e) => {
