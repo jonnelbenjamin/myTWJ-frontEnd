@@ -71,15 +71,15 @@ formatDateVariable = (dateVariable) => {
           </Table.Row>
         </Table.Header>
           <Table.Body>
-          {/* entry.date_and_time.includes(this.state.date) */}
-            {this.state.date ? this.state.entryList.map(entry => entry.date_and_time.startsWith(this.state.date) 
-            ? <Table.Row><Table.Cell>{entry.description}</Table.Cell>
-            <Table.Cell>{entry.date_and_time}</Table.Cell>
-            </Table.Row> : null): null}
+           
         {this.state.search ? this.state.entryList.map(entry => entry.description.includes(this.state.search) ?  <Table.Row>
             <Table.Cell>{entry.description}</Table.Cell>
             <Table.Cell>{entry.date_and_time}</Table.Cell>
-            </Table.Row> : null) : this.state.entryList.map(entry => 
+            </Table.Row> : null) : this.state.date ? this.state.entryList.map(entry => entry.date_and_time.startsWith(this.state.date) 
+            ? <Table.Row><Table.Cell>{entry.description}</Table.Cell>
+            <Table.Cell>{entry.date_and_time}</Table.Cell>
+            </Table.Row> : null)
+             : this.state.entryList.map(entry => 
             <Table.Row>
             <Table.Cell>{entry.description}</Table.Cell>
             <Table.Cell>{entry.date_and_time}</Table.Cell>
