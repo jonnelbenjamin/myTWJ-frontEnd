@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Table, Search, Confirm } from 'semantic-ui-react'
+import { Icon, Table, Search, Confirm, Accordion } from 'semantic-ui-react'
 import Calendar from 'react-calendar';
 
 
@@ -10,7 +10,8 @@ class EntryList extends React.Component {
       entryList: [],
       date: "",
       search: "",
-      open: false
+      open: false,
+      activeIndex: 0
     }
   }
 
@@ -66,14 +67,24 @@ class EntryList extends React.Component {
   handleDelete = (e) => {
     fetch(`http://localhost:3000/entries/${e.target.parentElement.parentElement.id}`, {
       method: "DELETE"
-    } )
+    })
     .then(this.setState({
       open: false
     }))
   }
 
+  handleAccordionClick = (e, titleProps) => {
+    
+    const { index } = titleProps
+    const { activeIndex } = this.state
+    const newIndex = activeIndex === index ? -1 : index
+
+    this.setState({ activeIndex: newIndex })
+  }
+
 
   render() {
+    const { activeIndex } = this.state
     return (
       <div>
 
@@ -99,7 +110,12 @@ class EntryList extends React.Component {
               </Table.Row> : null)
                 : this.state.entryList.map(entry =>
                   <Table.Row>
-                    <Table.Cell>{entry.description}</Table.Cell>
+                    <Accordion>
+                    <Accordion.Title active={activeIndex === entry.id} index={entry.id} onClick={this.handleAccordionClick}>
+                    <Icon name='dropdown' />
+                    {entry.description.split(" ")[0]}</Accordion.Title>
+                    <Accordion.Content active={activeIndex === entry.id}>{entry.description}</Accordion.Content>
+                    </Accordion>
                     <Table.Cell>{entry.date_and_time}</Table.Cell>
                     <Table.Cell><Icon name='trash' onClick={this.open} id={entry.id}/></Table.Cell>
                     <Confirm open={this.state.open} onCancel={this.close} id={entry.id} onConfirm={this.handleDelete} />
