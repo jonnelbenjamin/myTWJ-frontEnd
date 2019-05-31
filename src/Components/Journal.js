@@ -40,14 +40,16 @@ class Journal extends React.Component {
 
     render(){
       return (
-        <div>
-       <p>{this.state.date}</p>
+         
+        <div id='journalBackground'>
+       <p id='journalDate'>{this.state.date}</p>
         <Form id='journal'>
-          <Form.TextArea 
+          <Form.Field control='textarea' rows='24' 
           onChange={this.handleChange}
           />
-          <Link to="/entrylist"><Button content='Submit Entry' icon='edit' onClick={() => this.handleSubmit(this.state.currentEntry)}/></Link>
         </Form>
+        <Link to="/entrylist"><Button id='submitJournal' content='Submit Entry' icon='edit' onClick={() => this.handleSubmit(this.state.currentEntry)}/></Link>
+       
        </div>
       )
     }

@@ -17,21 +17,21 @@ class Navbar extends React.Component {
       <div id='navBar'>
       <Segment inverted>
         <Menu inverted pointing secondary>
-          <Link to="/new"><Menu.Item name='New' active={activeItem === 'home'} onClick={this.handleItemClick} /></Link>
+          <Link to="/new"><Menu.Item name='New' active={activeItem === 'New'} onClick={this.handleItemClick} /></Link>
           <Link to="/entrylist"><Menu.Item
             name='My Journal'
-            active={activeItem === 'messages'}
+            active={activeItem === 'My Journal'}
             onClick={this.handleItemClick}
           /></Link>
           <Link to="/settings"><Menu.Item
             name='Settings'
-            active={activeItem === 'friends'}
+            active={activeItem === 'Settings'}
             onClick={this.handleItemClick}
           /></Link>
           <Link to="/login">
           <Menu.Item
             name='Logout'
-            active={activeItem === 'friends'}
+            active={activeItem === 'Logout'}
             onClick={this.handleItemClick}
           /></Link>
         </Menu>

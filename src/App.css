@@ -28,9 +28,10 @@
  top: 0px;
  width: 100%;
 }
+/* background-image: url('https://images.pexels.com/photos/606539/pexels-photo-606539.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); */
 
 body {
-  background-image: url('https://images.pexels.com/photos/606539/pexels-photo-606539.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-image: url('http://ianimesh.me/wp-content/uploads/2018/12/table-board-wooden-background-and-border-bottom-css.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -56,9 +57,38 @@ body {
 }
 
 #search{
-  position: fixed; 
+  position: absolute; 
   top: 100px;
   left:320px;
 }
+#journalBackground {
+  background-image: url('https://www.pngkey.com/png/full/115-1156910_open-journal-background.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  width: 100%;
+  height: 87%;
+  top: 100px;
+  left: 170px;
+}
+
 #journal {
+  position: absolute;
+  top: 20px;
+  left: 555px;
+  width: 490px;
+  font-size: 20px;
+  /* opacity: 0.1; */
+}
+
+#submitJournal {
+  position: absolute;
+  top:450px;
+  left: 220px;
+}
+
+#journalDate {
+  position: absolute;
+  top: 85px;
+  left: 230px;
 }

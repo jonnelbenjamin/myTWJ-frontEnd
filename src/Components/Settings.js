@@ -5,7 +5,7 @@ class Settings extends React.Component {
 
     render(){
       return (
-       <Segment id="settingsSegment" raised><h1>"I'm the settings page!"</h1></Segment>
+       <Segment id="settingsSegment" raised><h1>Coming Soon!</h1></Segment>
       )
     }
   }

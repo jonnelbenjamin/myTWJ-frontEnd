@@ -1,7 +1,6 @@
 import React from 'react'
-import { Icon, Table, Search } from 'semantic-ui-react'
+import { Icon, Table, Search, Confirm } from 'semantic-ui-react'
 import Calendar from 'react-calendar';
-import ReactSearchBox from 'react-search-box'
 
 
 class EntryList extends React.Component {
@@ -10,9 +9,13 @@ class EntryList extends React.Component {
     this.state = {
       entryList: [],
       date: "",
-      search: ""
+      search: "",
+      open: false
     }
   }
+
+  open = () => this.setState({ open: true })
+  close = () => this.setState({ open: false })
 
   componentDidMount() {
     fetch('http://localhost:3000/entries')
@@ -60,14 +63,14 @@ class EntryList extends React.Component {
 
   }
 
-  // this is a test
-  // another
-
-
   handleDelete = (e) => {
-    fetch(`http://localhost:3000/entries/${e.target.id}`, {
+    fetch(`http://localhost:3000/entries/${e.target.parentElement.parentElement.id}`, {
       method: "DELETE"
-    } )}
+    } )
+    .then(this.setState({
+      open: false
+    }))
+  }
 
 
   render() {
@@ -81,21 +84,25 @@ class EntryList extends React.Component {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-
             {this.state.search ? this.state.entryList.map(entry => entry.description.includes(this.state.search) ? <Table.Row>
               <Table.Cell>{entry.description}</Table.Cell>
               <Table.Cell>{entry.date_and_time}</Table.Cell>
+              <Table.Cell><Icon name='trash' onClick={this.open} id={entry.id}/></Table.Cell>
+              <Confirm open={this.state.open} onCancel={this.close} id={entry.id} onConfirm={this.handleDelete} />
             </Table.Row> : null) 
             : this.state.date ? 
             this.state.entryList.map(entry => entry.date_and_time.startsWith(this.state.date)
               ? <Table.Row><Table.Cell>{entry.description}</Table.Cell>
                 <Table.Cell>{entry.date_and_time}</Table.Cell>
+                <Table.Cell><Icon name='trash' onClick={this.open} id={entry.id}/></Table.Cell>
+                <Confirm open={this.state.open} onCancel={this.close} id={entry.id} onConfirm={this.handleDelete} />
               </Table.Row> : null)
                 : this.state.entryList.map(entry =>
                   <Table.Row>
                     <Table.Cell>{entry.description}</Table.Cell>
                     <Table.Cell>{entry.date_and_time}</Table.Cell>
-                    <Table.Cell><Icon name='trash' onClick={this.handleDelete} id={entry.id}/></Table.Cell>
+                    <Table.Cell><Icon name='trash' onClick={this.open} id={entry.id}/></Table.Cell>
+                    <Confirm open={this.state.open} onCancel={this.close} id={entry.id} onConfirm={this.handleDelete} />
                   </Table.Row>)}
           </Table.Body>
         </Table>
@@ -105,6 +112,7 @@ class EntryList extends React.Component {
         />
         <div id='search'>
           <Search onSearchChange={this.searchChange}
+          showNoResults={false}
           ></Search>
         </div>
       </div>
