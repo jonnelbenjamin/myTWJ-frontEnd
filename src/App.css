@@ -73,12 +73,12 @@ body {
 }
 
 #journal {
+  background-color:rgba(0, 255, 255, 0.336);
   position: absolute;
   top: 20px;
   left: 555px;
   width: 490px;
   font-size: 20px;
-  /* opacity: 0.1; */
 }
 
 #submitJournal {
@@ -91,4 +91,15 @@ body {
   position: absolute;
   top: 85px;
   left: 230px;
+}
+
+#login {
+  background-color:rgba(0, 255, 255, 0.336);
+  height: 400px;
+  width: 500px;
+  border-radius: 29px;
+}
+
+.accordionContent {
+  font-size: 14px;
 }

@@ -11,18 +11,22 @@ class EntryList extends React.Component {
       date: "",
       search: "",
       open: false,
-      activeIndex: 0
+      activeIndex: 0,
+      activeId: ""
     }
   }
 
-  open = () => this.setState({ open: true })
+  open = (e) => {
+    let id = e.target.id
+    debugger 
+    this.setState({ open: true, activeId: id })}
   close = () => this.setState({ open: false })
 
   componentDidMount() {
     fetch('http://localhost:3000/entries')
       .then(res => res.json())
       .then(entryList => this.setState({
-        entryList
+        entryList: entryList.reverse()
       }))
   }
 
@@ -65,7 +69,7 @@ class EntryList extends React.Component {
   }
 
   handleDelete = (e) => {
-    fetch(`http://localhost:3000/entries/${e.target.parentElement.parentElement.id}`, {
+    fetch(`http://localhost:3000/entries/${this.state.activeId}`, {
       method: "DELETE"
     })
     .then(this.setState({
@@ -74,7 +78,6 @@ class EntryList extends React.Component {
   }
 
   handleAccordionClick = (e, titleProps) => {
-    
     const { index } = titleProps
     const { activeIndex } = this.state
     const newIndex = activeIndex === index ? -1 : index
@@ -116,8 +119,8 @@ class EntryList extends React.Component {
                     <Accordion.Content active={activeIndex === entry.id}>{entry.description}</Accordion.Content>
                     </Accordion>
                 <Table.Cell>{entry.date_and_time}</Table.Cell>
-                <Table.Cell><Icon name='trash' onClick={this.open} id={entry.id}/></Table.Cell>
-                <Confirm open={this.state.open} onCancel={this.close} id={entry.id} onConfirm={this.handleDelete} />
+                <Table.Cell><Icon name='trash' onClick={(e) => this.open(e)} id={entry.id}/></Table.Cell>
+                <Confirm open={this.state.open} onCancel={this.close} onConfirm={this.handleDelete} />
               </Table.Row> : null)
                 : this.state.entryList.map(entry =>
                   <Table.Row>
@@ -125,7 +128,7 @@ class EntryList extends React.Component {
                     <Accordion.Title active={activeIndex === entry.id} index={entry.id} onClick={this.handleAccordionClick}>
                     <Icon name='dropdown' />
                     {entry.description.split(" ")[0]}</Accordion.Title>
-                    <Accordion.Content active={activeIndex === entry.id}>{entry.description}</Accordion.Content>
+                    <Accordion.Content className='accordionContent' active={activeIndex === entry.id}>{entry.description}</Accordion.Content>
                     </Accordion>
                     <Table.Cell>{entry.date_and_time}</Table.Cell>
                     <Table.Cell><Icon name='trash' onClick={this.open} id={entry.id}/></Table.Cell>
