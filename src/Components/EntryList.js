@@ -96,14 +96,25 @@ class EntryList extends React.Component {
           </Table.Header>
           <Table.Body>
             {this.state.search ? this.state.entryList.map(entry => entry.description.includes(this.state.search) ? <Table.Row>
-              <Table.Cell>{entry.description}</Table.Cell>
+              <Accordion>
+                    <Accordion.Title active={activeIndex === entry.id} index={entry.id} onClick={this.handleAccordionClick}>
+                    <Icon name='dropdown' />
+                    {entry.description.split(" ")[0]}</Accordion.Title>
+                    <Accordion.Content active={activeIndex === entry.id}>{entry.description}</Accordion.Content>
+                    </Accordion>
               <Table.Cell>{entry.date_and_time}</Table.Cell>
               <Table.Cell><Icon name='trash' onClick={this.open} id={entry.id}/></Table.Cell>
               <Confirm open={this.state.open} onCancel={this.close} id={entry.id} onConfirm={this.handleDelete} />
             </Table.Row> : null) 
             : this.state.date ? 
             this.state.entryList.map(entry => entry.date_and_time.startsWith(this.state.date)
-              ? <Table.Row><Table.Cell>{entry.description}</Table.Cell>
+              ? <Table.Row>
+                 <Accordion>
+                    <Accordion.Title active={activeIndex === entry.id} index={entry.id} onClick={this.handleAccordionClick}>
+                    <Icon name='dropdown' />
+                    {entry.description.split(" ")[0]}</Accordion.Title>
+                    <Accordion.Content active={activeIndex === entry.id}>{entry.description}</Accordion.Content>
+                    </Accordion>
                 <Table.Cell>{entry.date_and_time}</Table.Cell>
                 <Table.Cell><Icon name='trash' onClick={this.open} id={entry.id}/></Table.Cell>
                 <Confirm open={this.state.open} onCancel={this.close} id={entry.id} onConfirm={this.handleDelete} />
