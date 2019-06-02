@@ -68,6 +68,7 @@ class EntryList extends React.Component {
 
   }
 
+
   handleDelete = (e) => {
     fetch(`http://localhost:3000/entries/${this.state.activeId}`, {
       method: "DELETE"

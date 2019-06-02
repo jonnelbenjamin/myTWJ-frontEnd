@@ -24,8 +24,8 @@ class Navbar extends React.Component {
             onClick={this.handleItemClick}
           /></Link>
           <Link to="/settings"><Menu.Item
-            name='Settings'
-            active={activeItem === 'Settings'}
+            name='Profile'
+            active={activeItem === 'Profile'}
             onClick={this.handleItemClick}
           /></Link>
           <Link to="/login">

@@ -43,11 +43,12 @@ class Journal extends React.Component {
          
         <div id='journalBackground'>
        <p id='journalDate'>{this.state.date}</p>
-        <Form id='journal'>
+       <textarea id='journal' onChange={this.handleChange} rows='28'></textarea>
+        {/* <Form id='journal'>
           <Form.Field control='textarea' rows='24' 
           onChange={this.handleChange}
           />
-        </Form>
+        </Form> */}
         <Link to="/entrylist"><Button id='submitJournal' content='Submit Entry' icon='edit' onClick={() => this.handleSubmit(this.state.currentEntry)}/></Link>
        
        </div>
