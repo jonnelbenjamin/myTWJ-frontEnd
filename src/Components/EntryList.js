@@ -50,11 +50,11 @@ class EntryList extends React.Component {
     // 2019-05-29
 
     if (month >= 10 && day < 10) {
-      let parsedString = `${month}-0${day}-${year}`
+      let parsedString = `${month}-${day}-${year}`
       return parsedString
     }
     else if (month < 10 && day < 10) {
-      let parsedString = `${month}-0${day}-${year}`
+      let parsedString = `${month}-${day}-${year}`
       return parsedString
     }
     else if (day >= 10 && month < 10) {
