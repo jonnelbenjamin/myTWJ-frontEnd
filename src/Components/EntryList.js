@@ -91,8 +91,8 @@ class EntryList extends React.Component {
     const { activeIndex } = this.state
     return (
       <div>
-
-        <Table id="journalEntries">
+        <div id="journalEntries">
+        <Table>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell colSpan='3'>Entries List</Table.HeaderCell>
@@ -137,6 +137,7 @@ class EntryList extends React.Component {
                   </Table.Row>)}
           </Table.Body>
         </Table>
+        </div>
         <Calendar
           onChange={this.onCalendarChange}
           value={new Date()}

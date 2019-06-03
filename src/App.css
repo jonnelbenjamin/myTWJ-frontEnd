@@ -53,7 +53,9 @@ body {
   position: absolute;
   left: 110px;
   top: 220px;
-  width: 60%;
+  width: 63%;
+  max-height: 570px !important;
+  overflow-y: scroll !important;
 }
 
 #search{
