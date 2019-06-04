@@ -75,13 +75,13 @@ body {
 }
 
 #journal {
-  /* background-color:rgba(195, 230, 198, 0.041); */
+  background-color:rgba(90, 228, 102, 0.007);
   position: absolute;
   top: 20px;
   left: 555px;
   width: 490px;
   font-size: 20px;
-  opacity: 0.1;
+  opacity: 1;
 }
 
 #submitJournal {
