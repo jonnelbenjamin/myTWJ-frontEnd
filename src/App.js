@@ -3,14 +3,14 @@ import './App.css';
 import Navbar from './Containers/Navbar.js'
 import Main from './Containers/Main.js'
 
-function App() {
+class App extends React.Component {
   
   state = {
     currentUser: null,
     loading: true
   }
   
- componentDidMount();{
+ componentDidMount(){
 
    this.mount()
  }
@@ -35,7 +35,8 @@ function App() {
     }
   }
 
-  handleLoginSubmit = (username, password) => {
+  handleLoginSubmit = (userObj) => {
+    debugger
     fetch(`http://localhost:3000/login`, {
       method: "POST",
         headers: {
@@ -43,16 +44,19 @@ function App() {
           "Accept":"application/json"
         },
         body: JSON.stringify({
-          username:username,
-          password:password
+          user: userObj
         })
-    })
+        
+    }
+    )
     .then(res =>res.json())
     .then(data => {
+      debugger
       if(data.error){
         console.log(data)
         alert('Incorrect username or password')
       }else{
+        debugger
         console.log(data)
         this.setState({currentUser: data.user })
         localStorage.setItem("token", data.token)
@@ -66,16 +70,17 @@ function App() {
     })
     localStorage.clear()
   }
-
+render(){
   return (
     <div className="App">
       <header className="App-header">
         <Navbar logged_in={this.state.currentUser} onLogOut={this.handleLogOut}/>
-        <Main />
+        <Main handleLoginSubmit={this.handleLoginSubmit} />
         
       </header>
     </div>
   );
+}
 }
 
 export default App;

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
-import {Route, Switch, Link, withRouter} from 'react-router-dom'
+import { Link, withRouter} from 'react-router-dom'
 
 
 
